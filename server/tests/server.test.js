@@ -4,8 +4,16 @@ const request=require("supertest");
 
 var {Todo}=require("./../models/todo");
 var {app}=require("./../server");
+
+var todos=[{
+    text:"test code 1"
+},{
+    text:"test cose 2"
+}]
 beforeEach((done)=>{
-    Todo.remove({}).then(()=>done());
+    Todo.remove({}).then(()=>{
+        return Todo.insertMany(todos)
+    }).then(()=>done())
 })
 
 describe("POST/todos",()=>{
@@ -24,10 +32,19 @@ describe("POST/todos",()=>{
             if(err){
                 return done(arr);
             }
-            Todo.find().then((todos)=>{
+            Todo.find({text}).then((todos)=>{
                 expect(todos.length).toBe(1);
                 done();
             }).catch((e)=>{done(e)})
         })
     })
 });
+
+describe("GET/todos",()=>{
+    it("should get the todos",(done)=>{
+        request(app)
+        .get("/todos")
+        .expect(200)
+        .end(done)
+    })
+})
