@@ -8,6 +8,7 @@ var {Todo}=require("./models/todo");
 var {user}=require("./models/users");
 
 var app=express();
+const port=process.env.PORT ||3000
 
 app.use(BodyParser.json());
 
@@ -48,8 +49,8 @@ app.get("/todos/:id",(req,res)=>{
     })
 })
 
-app.listen(3000,()=>{
-    console.log("server 3000 is running")
+app.listen(port,()=>{
+    console.log(`server ${port} is running`)
 });
 
 
