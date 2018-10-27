@@ -8,14 +8,14 @@ var {Todo}=require("./models/todo");
 var {user}=require("./models/users");
 
 var app=express();
-const port=process.env.PORT ||3000
+const port=process.env.PORT ||3000;
 
-app.use(BodyParser.json());
+// app.use(BodyParser.json());
 
 app.post("/todos",(req,res)=>{
     var todo=new Todo({
         text:req.body.text,
-        completed:req.body.completed
+        
     });
 
     todo.save().then((doc)=>{
@@ -27,7 +27,7 @@ app.post("/todos",(req,res)=>{
 
 app.get("/todos",(req,res)=>{
     Todo.find({}).then((todos)=>{
-        res.send(todos)
+        res.send({todos})
     });
 },(e)=>{
     res.status(400).send(e);
