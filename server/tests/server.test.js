@@ -49,7 +49,7 @@ describe("GET/todos",()=>{
         .get("/todos")
         .expect(200)
         .expect((res)=>{
-            expect(res.body.todos.text).toBe(text)
+            expect(res.body.todos.length).toBe(2)
         })
         .end(done)
     })
@@ -76,5 +76,19 @@ describe("GET/todos/:id",()=>{
         .get(`/todos/123`)
         .expect(404)
         .end(done);
+    })
+});
+describe("todo/delete",()=>{
+    it("should delete the todo",(done)=>{
+        var hexid=todos[1]._id.toHexString();
+
+        request(app)
+        .delete(`/todos/${hexid}`)
+        .expect(200)
+        .expect((res)=>{
+            expect(res.body.todo.text).toBe(todos[1].text)
+        })
+        .end(done)
+        
     })
 })

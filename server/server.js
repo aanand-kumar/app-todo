@@ -42,7 +42,7 @@ app.get("/todos/:id",(req,res)=>{
         if(!todo){
             return res.status(404).send();
         }
-        res.send(todo)
+        res.send({todo})
     },(e)=>{
         res.status(400).send()
     })
@@ -57,7 +57,7 @@ app.delete("/todos/:id",(req,res)=>{
         if(!doc){
             return res.status(404).send();
         }
-        res.send(doc)
+        res.send({doc})
     },(e)=>res.status(400).send())
 })
 
