@@ -8,5 +8,5 @@ if (env=="dev"){
     process.env.MONGODB_URI="mongodb://localhost:27017/TodoTestApp1";
 }
 else{
-    process.env.MONGODB_URI="mongodb://kum:adaanand420@ds139322.mlab.com:39322/mou"
+    process.env.MONGODB_URI="mongodb://ad:and123@ds139322.mlab.com:39322/mou"
 }
