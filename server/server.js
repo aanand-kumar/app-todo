@@ -11,7 +11,7 @@ var {Todo}=require("./models/todo");
 var {user}=require("./models/users");
 
 var app=express();
-const port=process.env.PORT ;;
+const port=process.env.PORT ;
 
 app.use(BodyParser.json());
 
