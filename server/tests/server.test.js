@@ -86,9 +86,28 @@ describe("todo/delete",()=>{
         .delete(`/todos/${hexid}`)
         .expect(200)
         .expect((res)=>{
-            expect(res.body.todo.text).toBe(todos[1].text)
+            expect(res.body.doc.text).toBe(todos[1].text)
         })
         .end(done)
         
+    })
+});
+
+describe("todo/PATCH",()=>{
+    it("should patch the data",(done)=>{
+        
+        var hexid=todos[1]._id.toHexString();
+        var text="new test case 2"
+        var completed=true
+
+        request(app)
+        .patch(`/todos/${hexid}`)
+        .send({text})
+        .send({completed})
+        .expect(200)
+        .expect((res)=>{
+            expect(res.body.todo.text).toBe(text)
+        })
+        .end(done);
     })
 })
